@@ -26,7 +26,7 @@ Este projeto permite criar utilizadores, associar múltiplas contas a eles e pop
 
 A estrutura do banco de dados foi modelada para representar as relações entre utilizadores, contas e ações, garantindo a integridade dos dados.
 
-![Diagrama de Entidade-Relacionamento](images/image_b886c7.png)
+![Diagrama de Entidade-Relacionamento](images/UML.png)
 
 ## Como Executar o Projeto Localmente
 
