@@ -1,21 +1,3 @@
-Claro! Um bom README é essencial para qualquer projeto. Para o MkDocs, que usa Markdown, podemos criar um ficheiro bem estruturado, informativo e que inclua a sua imagem do diagrama.
-
-Abaixo está uma sugestão completa para o seu README.md.
-
-Nota Sobre a Imagem
-Para que a imagem apareça no seu site MkDocs, siga estes passos:
-
-Dentro da pasta do seu projeto, o MkDocs geralmente cria uma pasta chamada docs.
-
-Dentro da pasta docs, crie uma nova pasta chamada images.
-
-Coloque o seu ficheiro de imagem (image_b886c7.png) dentro desta nova pasta docs/images/.
-
-O código Markdown abaixo já está configurado para encontrar a imagem nesse local.
-
-Conteúdo para o seu README.md
-Pode copiar e colar todo o texto abaixo num ficheiro README.md (ou index.md) dentro da sua pasta docs.
-
 Markdown
 
 # Agregador de Investimentos
