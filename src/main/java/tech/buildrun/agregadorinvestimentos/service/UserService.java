@@ -88,15 +88,13 @@ public class UserService {
 
     }
 
-    public void deleteById(String userId) {
 
+    public void deleteById(String userId) {
         var id = UUID.fromString(userId);
 
-        var userExists = userRepository.existsById(id);
+        var user = userRepository.findById(id);
 
-        if (userExists) {
-            userRepository.deleteById(id);
-        }
+        user.ifPresent(userRepository::delete);
     }
 
     public void createAccount(String userId, CreateAccountDto createAccountDto) {
@@ -104,29 +102,24 @@ public class UserService {
         var user = userRepository.findById(UUID.fromString(userId))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario não existe"));
 
-        if (isNull(user.getAccounts())) {
-            user.setAccounts(new ArrayList<>());
-        }
-
-        // DTO -> ENTITY
         var account = new Account(
-                UUID.randomUUID(),
+                null,
                 user,
                 null,
                 createAccountDto.description(),
                 new ArrayList<>()
         );
 
-        var accountCreated = accountRepositoy.save(account);
-
         var billingAddress = new BillingAddress(
-                accountCreated.getAccountId(),
-                accountCreated,
+                null,
+                account,
                 createAccountDto.street(),
                 createAccountDto.number()
         );
 
-        billingAddressRepository.save(billingAddress);
+        account.setBillingAddress(billingAddress);
+
+        accountRepositoy.save(account);
     }
 
     public List<Account> findAccounts(String userId) {

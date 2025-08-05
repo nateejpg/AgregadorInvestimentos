@@ -1,3 +1,5 @@
+// Em: agregadorinvestimentos/entity/Account.java
+
 package tech.buildrun.agregadorinvestimentos.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -21,18 +23,28 @@ public class Account {
     @JsonBackReference
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
-    @PrimaryKeyJoinColumn
+    // O cascade = CascadeType.ALL garante que o BillingAddress seja salvo junto com a Account.
+    @OneToOne(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
     private BillingAddress billingAddress;
 
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AccountStock> accountStocks = new ArrayList<>();
 
 
     public Account() {
+    }
+
+    // Construtor, Getters e Setters... (sem alterações)
+
+    public void setBillingAddress(BillingAddress billingAddress) {
+        // Importante: garantir a consistência nos dois lados da relação
+        if (billingAddress != null) {
+            billingAddress.setAccount(this);
+        }
+        this.billingAddress = billingAddress;
     }
 
     public Account(UUID accountId, User user, BillingAddress billingAddress, String description, List<AccountStock> accountStocks) {
@@ -66,14 +78,6 @@ public class Account {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public BillingAddress getBillingAddress() {
-        return billingAddress;
-    }
-
-    public void setBillingAddress(BillingAddress billingAddress) {
-        this.billingAddress = billingAddress;
     }
 
     public List<AccountStock> getAccountStocks() {

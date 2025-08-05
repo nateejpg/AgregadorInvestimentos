@@ -5,14 +5,14 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tb_billingaddress")
+@Table(name = "tb_billing_adress")
 public class BillingAddress {
 
     @Id
     @Column(name = "account_id")
     private UUID id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @MapsId
     @JoinColumn(name = "account_id")
     private Account account;
@@ -23,6 +23,7 @@ public class BillingAddress {
     @Column(name = "number")
     private Integer number;
 
+    // Construtores, Getters e Setters...
     public BillingAddress() {
     }
 
