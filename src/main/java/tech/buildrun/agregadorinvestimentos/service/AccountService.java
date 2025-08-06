@@ -53,9 +53,8 @@ public class AccountService {
 
         return account.getAccountStocks()
                 .stream()
-                .map(ac -> new AccountStockResponseDto(ac.getStock().getStockId(), ac.getQuantity(), 0.0))
+                .map(ac -> new AccountStockResponseDto(ac.getStock().getStockId(), ac.getQuantity()))
                 .toList();
-
     }
 
     public List<AccountResponseDto> listAllAccounts() {
