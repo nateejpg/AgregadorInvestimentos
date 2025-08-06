@@ -1,5 +1,3 @@
-Markdown
-
 # Agregador de Investimentos
 
 Bem-vindo ao Agregador de Investimentos, uma API RESTful desenvolvida em Java com Spring Boot para gerir utilizadores, as suas contas de investimento e as ações associadas a cada conta.
